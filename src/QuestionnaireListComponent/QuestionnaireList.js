@@ -57,8 +57,10 @@ class QuestionnaireList extends Component {
         {this.props.questions.map((question, i) =>
           <div>
           {question.name}
-          <br/>
+          <br />
           <input type="text" />
+          <br />
+          <br />
           </div>
         )}
       </div>
