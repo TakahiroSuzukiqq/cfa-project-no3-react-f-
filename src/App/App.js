@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 import QuestionnaireList from '../QuestionnaireListComponent/QuestionnaireList';
-// import { FormGroup } from 'react-bootstrap';
+// import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 
 
 
@@ -10,7 +10,8 @@ class App extends Component {
   constructor(props){
   super(props);
   this.state = {
-    questions: []
+    questions: [],
+    value: ''
   }
 };
 
@@ -24,17 +25,20 @@ class App extends Component {
     axios.get(URL)
     .then((response) => {
       this.setState({ questions: response.data });
+      console.log(this.state.questions)
     })
     .catch(function (error) {
       console.log(error);
     });
   }
 
+
   render() {
     return (
       <div>
        <h1>Questionnaire</h1>
        <QuestionnaireList questions={this.state.questions} />
+
       </div>
     );
   }
