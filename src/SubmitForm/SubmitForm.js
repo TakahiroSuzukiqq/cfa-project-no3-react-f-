@@ -9,13 +9,14 @@ class SubmitForm extends Component {
     this.nameInput.focus();
   };
 
-  SubmitAnswer() {
+  newSubmit() {
   	const URL = 'https://cfa-project-no3-nodejs-.herokuapp.com/api/questionnaire?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRha2FoaXJvc3V6dWtpLm0wMTBAZ21haWwuY29tIiwiaWF0IjoxNDk2Mjg5MDA0fQ.XEPhzEmNlxuy8a3KH6DW4dFSJtuq1VQBgOSVlU74jJE';
   	axios.post(URL + '&name=' + this.nameInput.value)
   		.then((response) => {
   			console.log(response);
+  			// reset value of input field
   			this.nameInput.value = '';
-  			this.props.getQuestionnaireList();
+  			// this.props.getQuestionnaireList();
   		})
   		.catch(function(error) {
   			console.log(error)
@@ -25,8 +26,11 @@ class SubmitForm extends Component {
 	render() {
 		return (
 			<div>
-				{/* <input type="text" ref={(input) => { this.questions = input; }} onChange={(e) => this.handleInputChange(e)} />*/}
-				<button onClick={() => this.SubmitAnswer()}>提出する</button>
+				<input
+					type="text"
+					ref={(input) => { this.nameInput = input; }}
+					onChange={(e) => this.handleInputChange(e)} />
+				<button onClick={() => this.newSubmit()}>提出する！</button>
 			</div>
 		)
 	};

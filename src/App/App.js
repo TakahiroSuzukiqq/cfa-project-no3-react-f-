@@ -11,9 +11,8 @@ class App extends Component {
   constructor(props){
   super(props);
   this.state = {
-    questions: [],
-    // value: ''
-  }
+    questions: []
+  };
 };
 
    componentDidMount() {
@@ -34,15 +33,17 @@ class App extends Component {
   }
 
 
+
   render() {
     return (
       <div>
        <h1>Questionnaire</h1>
          <QuestionnaireList questions={ this.state.questions } />
-         <div className="submit_of_questions">
-           <SubmitForm
-            getQuestionnaireList={ () => this.getQuestionnaireList() }/>
-           </div>
+         <div className="submit_questions">
+         <SubmitForm
+        　　getQuestionnaireList={ () => this.getQuestionnaireList() }/>
+         </div>
+
       </div>
     );
   }
