@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './App.css';
-import QuestionnaireList from '../QuestionnaireListComponent/QuestionnaireList';
+import '../App/App.css';
+import QuestionnaireList from '../QuestionnaireList/QuestionnaireList';
+import SubmitForm from '../SubmitForm/SubmitForm';
 // import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 
 
@@ -11,7 +12,7 @@ class App extends Component {
   super(props);
   this.state = {
     questions: [],
-    value: ''
+    // value: ''
   }
 };
 
@@ -37,8 +38,11 @@ class App extends Component {
     return (
       <div>
        <h1>Questionnaire</h1>
-       <QuestionnaireList questions={this.state.questions} />
-
+         <QuestionnaireList questions={ this.state.questions } />
+         <div className="submit_of_questions">
+           <SubmitForm
+            getQuestionnaireList={ () => this.getQuestionnaireList() }/>
+           </div>
       </div>
     );
   }
