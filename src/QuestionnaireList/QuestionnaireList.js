@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Checkbox, Radio, Col, Well } from 'react-bootstrap';
+import { Checkbox, Radio, Col, Well, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
 class QuestionnaireList extends Component {
   render(){
@@ -12,14 +12,25 @@ class QuestionnaireList extends Component {
             {question.name}
               <br />
               {question.question_type === "checkbox" ? (
-                 <Radio name="radioGroup" inline> 1 </Radio>
-                //  <Radio name="radioGroup" inline> 2 </Radio>
-                //  <Radio name="radioGroup" inline> 3 </Radio>
-                //  <Radio name="radioGroup" inline> 4 </Radio>
-                //  <Radio name="radioGroup" inline> 5 </Radio>
+                <div>
+                  <Radio name="radioGroup" inline> 1 </Radio>
+                  <Radio name="radioGroup" inline> 2 </Radio>
+                  <Radio name="radioGroup" inline> 3 </Radio>
+                  <Radio name="radioGroup" inline> 4 </Radio>
+                  <Radio name="radioGroup" inline> 5 </Radio>
+                </div>
+              ) : question.question_type === "string" ? (
+                <div>
+                  <FormGroup controlId="formControlsTextarea">
+                    <FormControl componentClass="textarea" />
+                  </FormGroup>
+                </div>
               ) : (
-              <input type="text" />
-              )}
+                <div>
+                  <input type="text" />
+                </div>
+               )
+              }
               <br />
               <br />
           </div>
