@@ -11,26 +11,26 @@ class QuestionnaireList extends Component {
           <div>
             {question.name}
               <br />
-              {question.question_type === "checkbox" ? (
-                <div>
-                  <Radio name="radioGroup" inline> 1 </Radio>
-                  <Radio name="radioGroup" inline> 2 </Radio>
-                  <Radio name="radioGroup" inline> 3 </Radio>
-                  <Radio name="radioGroup" inline> 4 </Radio>
-                  <Radio name="radioGroup" inline> 5 </Radio>
-                </div>
-              ) : question.question_type === "string" ? (
-                <div>
-                  <FormGroup controlId="formControlsTextarea">
-                    <FormControl componentClass="textarea" />
-                  </FormGroup>
-                </div>
-              ) : (
+              {question.question_type === "defoinfo" ? (
                 <div>
                   <input type="text" />
                 </div>
-               )
-              }
+               ) : question.question_type === "checkbox" ? (
+                 <div>
+                   <Radio name="radioGroup" inline> 1 </Radio>
+                   <Radio name="radioGroup" inline> 2 </Radio>
+                   <Radio name="radioGroup" inline> 3 </Radio>
+                   <Radio name="radioGroup" inline> 4 </Radio>
+                   <Radio name="radioGroup" inline> 5 </Radio>
+                 </div>
+               ) : (
+                 <div>
+                   <FormGroup controlId="formControlsTextarea">
+                     <FormControl componentClass="textarea" />
+                   </FormGroup>
+                 </div>
+                )
+               }
               <br />
               <br />
           </div>
