@@ -11,6 +11,7 @@ class QuestionnaireList extends Component {
       questions: props.questions,
       answers: []
     };
+   this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -27,14 +28,19 @@ class QuestionnaireList extends Component {
     this.setState({answers: answers});    //answerは上の[]からくる
   }
 
-  handleInputChange(e) {
+// componentWillMount() {
+//    this.newSubmit
+// }
+
+  handleInputChange(name, e) {
     // console.log(e.target.value)
-    console.log(e.target)
-    let newObj = {qa_key: e.target.name, value: e.target.value}
-    this.setState({
-      answers: this.state.answers[newObj.qa_key]
-    })
-  };   //fYR
+    console.log("handlechange", name, "value", e.target.value)
+    // console.log("handlechange", name, "value", e.target.value)
+    // let newObj = {qa_key: e.target.name, value: e.target.value}
+    // this.setState({
+    //   answers: this.state.answers[newObj.qa_key]
+    // })
+  };
 
 
   focus() {
@@ -63,9 +69,10 @@ class QuestionnaireList extends Component {
   render(){
     return(
       <div>
-        <button onClick={this.focus.bind(this)}>focus</button>
+       <button onClick={this.focus.bind(this)}>Submit Answer-提出する-</button>
+        {/* <button onClick={this.focus.bind(this)}>focus</button> Jamie's test button*/}
         <Col md={4} mdPull={6} className="list_of_questions">
-      <Well>
+       <Well>
         {this.props.questions.map((question, i) =>
           <div>
             {question.qa_key} {question.name}
@@ -73,11 +80,11 @@ class QuestionnaireList extends Component {
               {question.question_type === "defoinfo" ? (
                 <div>
                  <input type="text"
+                //  placeholder="hello"
                  name={question.qa_key}
-                 //ref={(input) => { this.questions[question.qa_key] = input; }}
-                //  ref={(input => {this.answers[] = input;})}
-                // ref={(input) => { this.nameInput = input; }}//
-                 onChange={(e) => this.handleInputChange(e)}
+                 ref={(input) => { this.questions[question.qa_key] = input; }}
+                 ref={(input) => { this.nameInput = input; }}
+                 onChange={this.handleInputChange.bind(this, question.qa_key)}
                  />
                 </div>
 
@@ -88,10 +95,10 @@ class QuestionnaireList extends Component {
                  <Radio
                  //name="checkboxanswer1"
                   name={question.qa_key}
-                  //ref={(input) => { this.questions[question.qa_key] = input; }}
-                  // ref={(input => {this.answers[] = input;})}
-                  //ref={(input) => { this.nameInput = input; }}//
+                  ref={(input) => { this.questions[question.qa_key] = input; }}
+                  ref={(input) => { this.nameInput = input; }}
                   onChange={(e) => this.handleInputChange(e)}
+                  onChange={this.handleInputChange.bind(this, question.qa_key)}
                   inline>
                   1
                  </Radio>
@@ -99,10 +106,10 @@ class QuestionnaireList extends Component {
                  <Radio
                  //name="checkboxanswer2"
                   name={question.qa_key}
-                  //ref={(input) => { this.questions[question.qa_key] = input; }}
-                  // ref={(input => {this.answers[] = input;})}
-                  //ref={(input) => { this.nameInput = input; }}//
-                  onChange={(e) => this.handleInputChange(e)}
+                  ref={(input) => { this.questions[question.qa_key] = input; }}
+                  ref={(input) => { this.nameInput = input; }}
+                  // onChange={(e) => this.handleInputChange(e)}
+                  onChange={this.handleInputChange.bind(this, question.qa_key)}
                   inline>
                    2
                  </Radio>
@@ -110,10 +117,10 @@ class QuestionnaireList extends Component {
                   <Radio
                   //name="checkboxanswer3"
                   name={question.qa_key}
-                  //ref={(input) => { this.questions[question.qa_key] = input; }}
-                  // ref={(input => {this.answers[] = input;})}
-                  //ref={(input) => { this.nameInput = input; }}//
-                  onChange={(e) => this.handleInputChange(e)}
+                  ref={(input) => { this.questions[question.qa_key] = input; }}
+                  ref={(input) => { this.nameInput = input; }}
+                 // onChange={(e) => this.handleInputChange(e)}
+                  onChange={this.handleInputChange.bind(this, question.qa_key)}
                   inline>
                    3
                  </Radio>
@@ -121,10 +128,10 @@ class QuestionnaireList extends Component {
                  <Radio
                   //name="checkboxanswer4"
                    name={question.qa_key}
-                  //ref={(input) => { this.questions[question.qa_key] = input; }}
-                  // ref={(input => {this.answers[] = input;})}
-                  //ref={(input) => { this.nameInput = input; }}//
-                  onChange={(e) => this.handleInputChange(e)}
+                  ref={(input) => { this.questions[question.qa_key] = input; }}
+                  ref={(input) => { this.nameInput = input; }}
+                  // onChange={(e) => this.handleInputChange(e)}
+                  onChange={this.handleInputChange.bind(this, question.qa_key)}
                   inline>
                    4
                  </Radio>
@@ -132,10 +139,10 @@ class QuestionnaireList extends Component {
                  <Radio
                   //name="checkboxanswer5"
                    name={question.qa_key}
-                  //ref={(input) => { this.questions[question.qa_key] = input; }}
-                  // ref={(input => {this.answers[] = input;})}
-                  //ref={(input) => { this.nameInput = input; }}//
-                   onChange={(e) => this.handleInputChange(e)}
+                  ref={(input) => { this.questions[question.qa_key] = input; }}
+                  ref={(input) => { this.nameInput = input; }}
+                   // onChange={(e) => this.handleInputChange(e)}
+                  onChange={this.handleInputChange.bind(this, question.qa_key)}
                   inline>
                    5
                  </Radio>
@@ -147,10 +154,10 @@ class QuestionnaireList extends Component {
                    <FormGroup controlId="formControlsTextarea">
                     <FormControl componentClass="textarea"
                      name={question.qa_key}
-                    // ref={(input) => { this.questions[question.qa_key] = input; }}
-                    //  ref={(input => {this.answers[] = input;})}
-                     //ref={(input) => { this.nameInput = input; }}//
-                     onChange={(e) => this.handleInputChange(e)}
+                     ref={(input) => { this.questions[question.qa_key] = input; }}
+                     ref={(input) => { this.nameInput = input; }}
+                    // onChange={(e) => this.handleInputChange(e)}
+                     onChange={this.handleInputChange.bind(this, question.qa_key)}
                     />
                    </FormGroup>
                 </div>
@@ -159,10 +166,10 @@ class QuestionnaireList extends Component {
                    <Radio
                     //name="yesno1"
                     name={question.qa_key}
-                    //ref={(input) => { this.questions[question.qa_key] = input; }}
-                    // ref={(input => {this.answers[] = input;})}
-                  //  ref={(input) => { this.nameInput = input; }}//
-                    onChange={(e) => this.handleInputChange(e)}
+                    ref={(input) => { this.questions[question.qa_key] = input; }}
+                    ref={(input) => { this.nameInput = input; }}
+                   // onChange={(e) => this.handleInputChange(e)}
+                    onChange={this.handleInputChange.bind(this, question.qa_key)}
                     inline>
                      Yes
                    </Radio>
@@ -170,10 +177,10 @@ class QuestionnaireList extends Component {
                    <Radio
                     //name="yesno2"
                     name={question.qa_key}
-                    //ref={(input) => { this.questions[question.qa_key] = input; }}
-                    // ref={(input => {this.answers[] = input;})}
-                  //  ref={(input) => { this.nameInput = input; }}//
-                    onChange={(e) => this.handleInputChange(e)}
+                    ref={(input) => { this.questions[question.qa_key] = input; }}
+                    ref={(input) => { this.nameInput = input; }}
+                     // onChange={(e) => this.handleInputChange(e)}
+                    onChange={this.handleInputChange.bind(this, question.qa_key)}
                     inline>
                       No
                    </Radio>
@@ -184,7 +191,6 @@ class QuestionnaireList extends Component {
               <br />
           </div>
         )}
-        <button onClick = {this.focus.bind(this)}>Submit Answer-提出する-</button>
 
         {/*}<input
          type="button"
@@ -192,7 +198,7 @@ class QuestionnaireList extends Component {
          onClick={this.focus}
          />*/}
         {/* <button onClick={() => this.focus()}>提出する</button>*/}
-        </Well>
+         </Well>
         </Col>
       </div>
     )
@@ -200,6 +206,210 @@ class QuestionnaireList extends Component {
 }
 
 export default QuestionnaireList;
+
+//#######################################################################################################
+// import React, { Component } from 'react';
+// import { Checkbox, Radio, Col, Well, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+// import SubmitForm from '../SubmitForm/SubmitForm';
+// import axios from 'axios';
+//
+//
+// class QuestionnaireList extends Component {
+//   constructor(props){
+//     super(props);
+//     this.state = {
+//       questions: props.questions,
+//       answers: []
+//     };
+//   }
+//
+//   componentWillReceiveProps(nextProps) {
+//     console.log("nextprops", nextProps);
+//     let answers = [];
+//     nextProps.questions.map(q => {
+//       answers.push({
+//         qa_key: q.qa_key,             //answerにqa_keyとnameとuserAnswerというkey, valueを持たせる
+//         name: q.name,
+//         userAnswer: ""
+//       })
+//     })
+//
+//     this.setState({answers: answers});    //answerは上の[]からくる
+//   }
+//
+//   handleInputChange(e) {
+//     // console.log(e.target.value)
+//     console.log(e.target.value)
+//     let newObj = {qa_key: e.target.name, value: e.target.value}
+//     this.setState({
+//       answers: this.state.answers[newObj.qa_key]
+//     })
+//   };   //fYR
+//
+//
+//   focus() {
+//     //  this.nameInput.focus();
+//      console.log("this.state.answers", this.state.answers);
+//      //console.log(this.nameInput.value);
+//   };
+//
+//   newSubmit() {
+//     const URL = 'https://cfa-project-no3-nodejs-.herokuapp.com/api/questionnaire?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRha2FoaXJvc3V6dWtpLm0wMTBAZ21haWwuY29tIiwiaWF0IjoxNDk2Mjg5MDA0fQ.XEPhzEmNlxuy8a3KH6DW4dFSJtuq1VQBgOSVlU74jJE';
+//      axios.post(URL + '&name=' + this.nameInput.value)
+//        .then((response) => {
+//          console.log(response);
+//         this.nameInput.value = ' '; //reset value of input
+//         //  this.props.getQuestionnaireList();
+//       {/*}   this.props.getQnswerListforTest(); */}
+//        })
+//        .catch(function(error) {
+//          console.log(error)
+//        });
+//   };
+//
+//
+//
+//
+//   render(){
+//     return(
+//       <div>
+//         <button onClick={this.focus.bind(this)}>focus</button>
+//         <Col md={4} mdPull={6} className="list_of_questions">
+//       <Well>
+//         {this.props.questions.map((question, i) =>
+//           <div>
+//             {question.qa_key} {question.name}
+//               <br />
+//               {question.question_type === "defoinfo" ? (
+//                 <div>
+//                  <input type="text"
+//                  name={question.qa_key}
+//                  //ref={(input) => { this.questions[question.qa_key] = input; }}
+//                 //  ref={(input => {this.answers[] = input;})}
+//                 // ref={(input) => { this.nameInput = input; }}//
+//                  onChange={(e) => this.handleInputChange(e)}
+//                  />
+//                 </div>
+//
+//
+//                ) : question.question_type === "checkbox" ? (
+//                 <div>
+//
+//                  <Radio
+//                  //name="checkboxanswer1"
+//                   name={question.qa_key}
+//                   //ref={(input) => { this.questions[question.qa_key] = input; }}
+//                   // ref={(input => {this.answers[] = input;})}
+//                   //ref={(input) => { this.nameInput = input; }}//
+//                   onChange={(e) => this.handleInputChange(e)}
+//                   inline>
+//                   1
+//                  </Radio>
+//
+//                  <Radio
+//                  //name="checkboxanswer2"
+//                   name={question.qa_key}
+//                   //ref={(input) => { this.questions[question.qa_key] = input; }}
+//                   // ref={(input => {this.answers[] = input;})}
+//                   //ref={(input) => { this.nameInput = input; }}//
+//                   onChange={(e) => this.handleInputChange(e)}
+//                   inline>
+//                    2
+//                  </Radio>
+//
+//                   <Radio
+//                   //name="checkboxanswer3"
+//                   name={question.qa_key}
+//                   //ref={(input) => { this.questions[question.qa_key] = input; }}
+//                   // ref={(input => {this.answers[] = input;})}
+//                   //ref={(input) => { this.nameInput = input; }}//
+//                   onChange={(e) => this.handleInputChange(e)}
+//                   inline>
+//                    3
+//                  </Radio>
+//
+//                  <Radio
+//                   //name="checkboxanswer4"
+//                    name={question.qa_key}
+//                   //ref={(input) => { this.questions[question.qa_key] = input; }}
+//                   // ref={(input => {this.answers[] = input;})}
+//                   //ref={(input) => { this.nameInput = input; }}//
+//                   onChange={(e) => this.handleInputChange(e)}
+//                   inline>
+//                    4
+//                  </Radio>
+//
+//                  <Radio
+//                   //name="checkboxanswer5"
+//                    name={question.qa_key}
+//                   //ref={(input) => { this.questions[question.qa_key] = input; }}
+//                   // ref={(input => {this.answers[] = input;})}
+//                   //ref={(input) => { this.nameInput = input; }}//
+//                    onChange={(e) => this.handleInputChange(e)}
+//                   inline>
+//                    5
+//                  </Radio>
+//
+//                 </div>
+//
+//                ) : question.question_type === "string" ? (
+//                 <div>
+//                    <FormGroup controlId="formControlsTextarea">
+//                     <FormControl componentClass="textarea"
+//                      name={question.qa_key}
+//                     // ref={(input) => { this.questions[question.qa_key] = input; }}
+//                     //  ref={(input => {this.answers[] = input;})}
+//                      //ref={(input) => { this.nameInput = input; }}//
+//                      onChange={(e) => this.handleInputChange(e)}
+//                     />
+//                    </FormGroup>
+//                 </div>
+//                ) :  (
+//                 <div>
+//                    <Radio
+//                     //name="yesno1"
+//                     name={question.qa_key}
+//                     //ref={(input) => { this.questions[question.qa_key] = input; }}
+//                     // ref={(input => {this.answers[] = input;})}
+//                   //  ref={(input) => { this.nameInput = input; }}//
+//                     onChange={(e) => this.handleInputChange(e)}
+//                     inline>
+//                      Yes
+//                    </Radio>
+//
+//                    <Radio
+//                     //name="yesno2"
+//                     name={question.qa_key}
+//                     //ref={(input) => { this.questions[question.qa_key] = input; }}
+//                     // ref={(input => {this.answers[] = input;})}
+//                   //  ref={(input) => { this.nameInput = input; }}//
+//                     onChange={(e) => this.handleInputChange(e)}
+//                     inline>
+//                       No
+//                    </Radio>
+//                 </div>
+//                )
+//                }
+//               <br />
+//               <br />
+//           </div>
+//         )}
+//         <button onClick = {this.focus.bind(this)}>Submit Answer-提出する-</button>
+//
+//         {/*}<input
+//          type="button"
+//          value="提出する"
+//          onClick={this.focus}
+//          />*/}
+//         {/* <button onClick={() => this.focus()}>提出する</button>*/}
+//         </Well>
+//         </Col>
+//       </div>
+//     )
+//   }
+// }
+//
+// export default QuestionnaireList;
 
 //############################################################
 // import React, { Component } from 'react';

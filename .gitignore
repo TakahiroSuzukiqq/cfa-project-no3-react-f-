@@ -19,3 +19,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#
+# binding issue about qa_key stack overflow https://stackoverflow.com/questions/21029999/react-js-identifying-different-inputs-with-one-onchange-handler
