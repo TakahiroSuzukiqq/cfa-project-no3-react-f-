@@ -1,0 +1,13 @@
+var answers = [{"qa_key":"9","name":"授業・カリキュラムに満足しましたか？","userAnswer":""},{"qa_key":"10","name":"学校・クラスに馴染みやすかったでしょうか？","userAnswer":""},{"qa_key":"8","name":"ロケーションに不便しませんでしたか？","userAnswer":""},{"qa_key":"13","name":"あなたの留学体験記(自由記載式)","userAnswer":""},{"qa_key":"14","name":"ICN留学情報館をどの様にお知りになりましたか？","userAnswer":""},{"qa_key":"15","name":"他の方に紹介したいと思いますか？","userAnswer":""},{"qa_key":"17","name":"ほかICNへのコメントがあればご記載下さい。","userAnswer":""},{"qa_key":"18","name":"what is your name","userAnswer":""},{"qa_key":"1","name":"お名前","userAnswer":""},{"qa_key":"2","name":"ご年齢","userAnswer":""},{"qa_key":"3","name":"学校・コース名","userAnswer":""},{"qa_key":"4","name":"留学期間","userAnswer":""},{"qa_key":"5","name":"留学都市","userAnswer":""},{"qa_key":"6","name":"学校内施設は充実していましたか？","userAnswer":""},{"qa_key":"7","name":"教師・講師には満足しましたか？","userAnswer":""}]
+
+var result = answers.filter(function( obj ) {
+  return obj.qa_key == "9";
+});
+
+console.log("result is", result[0].userAnswer);
+
+result[0].userAnswer = "new answer"
+
+console.log("new result is", result[0].userAnswer);
+
+console.log(answers)

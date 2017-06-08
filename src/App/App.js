@@ -10,20 +10,21 @@ import Result from '../Result/Result';
 
 class App extends Component {
   constructor(props){
-  super(props);
-  this.state = {
-    questions: [],
-    // answers: []
+    super(props);
+    this.state = {
+      questions: [],
+      answers: []
+    };
   };
-};
 
-   componentDidMount() {
-     this.getQuestionnaireList();
-};
+  componentDidMount() {
+    this.getQuestionnaireList();
+  };
 
   getQuestionnaireList() {
     // console.log('componentDidMount()');
-    const URL = 'https://cfa-project-no3-nodejs-.herokuapp.com/api/questionnaire?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRha2FoaXJvc3V6dWtpLm0wMTBAZ21haWwuY29tIiwiaWF0IjoxNDk2Mjg5MDA0fQ.XEPhzEmNlxuy8a3KH6DW4dFSJtuq1VQBgOSVlU74jJE';
+    //const URL = 'https://cfa-project-no3-nodejs-.herokuapp.com/api/questionnaire?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRha2FoaXJvc3V6dWtpLm0wMTBAZ21haWwuY29tIiwiaWF0IjoxNDk2Mjg5MDA0fQ.XEPhzEmNlxuy8a3KH6DW4dFSJtuq1VQBgOSVlU74jJE';
+    const URL = 'http://localhost:3001/api/questionnaire?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRha2FoaXJvc3V6dWtpLm0wMTBAZ21haWwuY29tIiwiaWF0IjoxNDk2Mjg5MDA0fQ.XEPhzEmNlxuy8a3KH6DW4dFSJtuq1VQBgOSVlU74jJE';
     axios.get(URL)
     .then((response) => {
       this.setState({ questions: response.data });
